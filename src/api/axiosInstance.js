@@ -1,9 +1,7 @@
 import axios from "axios";
 
-// Get base URL from environment
-const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
+const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
 
-// Create Axios instance
 const axiosInstance = axios.create({
   baseURL,
   headers: {
@@ -11,10 +9,10 @@ const axiosInstance = axios.create({
   },
 });
 
-// Request Interceptor: attach token
+// Attach Token
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token"); // or sessionStorage
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -23,13 +21,11 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response Interceptor: optional for 401 handling
+// Handle 401
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      console.warn("Unauthorized! Token might be invalid or expired.");
-      // Optionally redirect to login or remove token
       localStorage.removeItem("token");
     }
     return Promise.reject(error);
