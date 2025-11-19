@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authApi from "../api/authApi";
+import { Button } from "../components/common/Button";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -138,13 +139,14 @@ export default function Register() {
           </div>
 
           {/* Button */}
-          <button
+          <Button
+            variant="primary"
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-full shadow-md transition"
+            className="w-full py-3"
           >
             {loading ? "Creating Account..." : "Create Account"}
-          </button>
+          </Button>
         </form>
 
         {/* Bottom Link */}
