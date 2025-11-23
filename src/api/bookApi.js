@@ -1,9 +1,14 @@
 import axiosInstance from "./axiosInstance";
 
 const bookApi = {
-  getAllBooks: async () => {
-    const response = await axiosInstance.get("/books");
-    return response.data;
+   getAllBooks: async () => {
+    try {
+      const response = await axiosInstance.get("/api/books/getAll");
+      return response.data;
+    } catch (error) {
+      console.error("Failed to fetch books:", error.response?.data || error.message);
+      throw error;
+    }
   },
 
   getBookById: async (bookId) => {

@@ -2,8 +2,12 @@ import axiosInstance from "./axiosInstance";
 
 const authApi = {
   login: async (credentials) => {
-    const response = await axiosInstance.post("/auth/login", credentials);
-    return response.data;
+    try {
+      const response = await axiosInstance.post("/auth/login", credentials);
+      return response.data; // should return { user, token }
+    } catch (error) {
+      throw error.response?.data || { message: "Network error" };
+    }
   },
 
   register: async (userData) => {

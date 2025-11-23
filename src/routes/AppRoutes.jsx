@@ -9,6 +9,9 @@ import { Routes, Route } from "react-router-dom";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
+import BooksPage from "../pages/BooksPage";
+import BookDetailPage from "../pages/BookDetailPage";
+
 
 export default function AppRoutes() {
   return (
@@ -16,9 +19,10 @@ export default function AppRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/books" element={<div>Books Page</div>} />
+      <Route path="/books" element={<BooksPage/>} />
+          <Route path="/books/:id" element={<BookDetailPage />} />
       <Route path="/cart" element={<div>Cart Page</div>} />
-      <Route path="/admin" element={<div>Admin Page</div>} />
+      
     </Routes>
   );
 }
