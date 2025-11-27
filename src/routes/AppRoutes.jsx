@@ -15,7 +15,7 @@ import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import BooksPage from "../pages/BooksPage";
 import BookDetailPage from "../pages/BookDetailPage";
-
+import OrdersPage from "../pages/OrdersPage"; // 👈 make sure this path is correct
 
 export default function AppRoutes() {
   return (
@@ -25,6 +25,9 @@ export default function AppRoutes() {
       <Route path="/login" element={<LoginPage />} />
 
       <Route path="/register" element={<RegisterPage />} />
+
+      {/* ✅ Orders page route */}
+      <Route path="/orders" element={<OrdersPage />} />
 
       <Route path="/books" element={<BooksPage/>} />
 
